@@ -1,5 +1,7 @@
-var data_file = 'data/quasiclique.json';
+var data_file =  window.location.search.substr(1); //'data/quasiclique.json';
 var linkStrength_factor = 1.0; // reduce it to spread out
+
+document.title = "GViz@YanLab: " + data_file;
 
 // For MSIE < 9, forget it
 function D3notok() {
@@ -175,7 +177,7 @@ function D3ok() {
 
   d3.json(
     //'data/movie-network-25-7-3.json',
-    data_file,
+    'data/'+data_file,
     function(data) {
 
     // Declare the variables pointing to the node & link arrays

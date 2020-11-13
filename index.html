@@ -1,75 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>GViz@YanLab</title>
-    <link rel="stylesheet" href="gviz.css"/>
-    <link rel="shortcut icon" href="img/mini.jpg" type="image/x-icon">
-    <script>
-      // Sniff MSIE version
-      // http://james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
-      var ie = ( function() {
-        var undef,
-        v = 3,
-        div = document.createElement('div'),
-        all = div.getElementsByTagName('i');
-        while (
-         div.innerHTML='<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',all[0]
-        );
-        return v > 4 ? v : undef;
-      }() );
 
-      function takeAction() {
-        if( ie && ie < 9 ) {
-	  D3notok();
-        } else {
-          // Load D3.js, and once loaded do our stuff
-          var head = document.getElementsByTagName('head')[0];
-          var script = document.createElement('script');
-          script.type = 'text/javascript';
-	  script.src = "d3.min.js";
-          script.addEventListener('load', D3ok, false);
-          script.onload = "D3ok();";
-	  head.appendChild(script);
-       }
-     }
-    </script>
-</head>
-<body onload="takeAction();">
+<title>GViz@YanLab</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Aladin&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="img/mini.jpg" type="image/x-icon">
 
-  <div id="nocontent">
-    <h1>Sadly your browser is not compatible with this site</h1>
-
-    <div>You can use <a href="http://www.google.com/chrome/">Google
-    Chrome</a>, <a href="http://www.mozilla.org/firefox">Mozilla Firefox</a>
-    or <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">Microsoft
-    Internet Explorer (v9 or above)</a></div>
-
-  </div>
-
-  <style>
-
-  label {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    position: absolute;
-    left: 10px;
-    top: 10px;
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  function openView(path)
+  {
+    window.open("gviz.html?"+path);
   }
 
-  </style>
-  <label><input style="width:240px;" type="range" min="0" max="1" step="any" value="1"> Link Strength</label>
-
-  <div id="networkPanel"></div>
-
-  <div id="sidepanel">
-
-    <div id="title">
-      <img width="160ex" src="img/logo.jpg"/>
-    </div>    
-
-    <div id="nodeInfo" class="panel_off"></div>
-  </div>
-
-  <script src="gviz.js"></script>
+  $(document).ready(function(){
+      // Get value on button click and show alert
+      $("#myBtn").click(function(){
+          //var path = $("#myInput").val();
+          var path = $("#myInput").val();
+          var filename = path.replace(/^.*[\\\/]/, '')
+          window.open("gviz.html?"+filename);
+      });
+  });
+</script>
+</head>
+<body>
+    <p style="text-align: center; font-family: 'Aladin', cursive;font-family: 'Permanent Marker', cursive;">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <img width="160ex" src="img/logo.jpg"/> <br>
+      <br>
+      <br>
+      Step 1: Please choose the network file. <br>
+      <font color="red">* Note: the file must be under the "data" folder!</font> <br>
+      <br>
+      Step 2: Click [View] to visualize in another window.<br>
+      <br>
+      <input type="file" id="myInput">
+      <button type="button" id="myBtn">View</button>
+    </p>
 </body>
 </html>
